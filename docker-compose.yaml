@@ -1,7 +1,7 @@
 version: "2.3"
 services:
   tileserver:
-    image: docker-registry01.pcic.uvic.ca:5000/pcic/pcic-tileserver:0.03
+    image: pcic/tileserver:1.0.0_01
     container_name: pcic-tileserver2
     ports:
       - "30789:8080"
