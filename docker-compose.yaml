@@ -1,0 +1,40 @@
+version: "2.3"
+services:
+  tileserver:
+    image: docker-registry01.pcic.uvic.ca:5000/pcic/pcic-tileserver:0.03
+    container_name: pcic-tileserver2
+    ports:
+      - "30789:8080"
+    env_file:
+      - tileserver.env
+    mem_limit: 2g 
+    memswap_limit: 2g
+    volumes:
+      - type: bind
+        source: /storage/data/projects/comp_support/pcic_tileserver/tileserver2/files/apache-000-default.conf
+        target: /etc/apache2/sites-available/000-default.conf
+        read_only: true
+      - type: bind
+        source: /storage/data/projects/comp_support/pcic_tileserver/tileserver2/files/apache-tileserver_site.conf
+        target: /etc/apache2/sites-enabled/tileserver_site.conf
+        read_only: true
+      - type: bind
+        source: /storage/data/projects/comp_support/pcic_tileserver/tileserver2/files/ports.conf
+        target: /etc/apache2/ports.conf
+        read_only: true
+      - type: bind
+        source: /storage/data/projects/comp_support/pcic_tileserver/tileserver2/files/renderd.conf
+        target: /etc/renderd.conf
+        read_only: true
+      - type: bind
+        source: /storage/data/projects/comp_support/pcic_tileserver/files/tilestore
+        target: /var/lib/mod_tile/
+        read_only: true
+      - type: bind
+        source: /storage/data/projects/comp_support/pcic_tileserver/tileserver2/files/run-small.sh
+        target: /run.sh
+        read_only: true
+networks:
+  default:
+    external:
+      name: pcicbr0
