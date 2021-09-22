@@ -2,7 +2,7 @@
 
 PCIC's custom tileserver image which is used to serve maps tiles to our applications. 
 
-##Configuration
+## Configuration
 
 The tileserver is built using the Apache Webserver (from repo) and [mod_tile](https://github.com/openstreetmap/mod_tile). The tiles have been pre-rendered and are stored on shared storage which can be mounted into the container. We have not enabled renderd in the container since we want to serve tiles, not render them at this point. 
 
